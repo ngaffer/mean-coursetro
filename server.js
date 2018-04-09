@@ -2,10 +2,15 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const http = require('http');
-const app = express();
+const mongoose = require('mongoose');
 
-// API file for interacting with MongoDB
-const api = require('./server/routes/api');
+const app = express();
+mongoose.connect('mongodb://localhost/mean-coursetro');
+
+// API/route files for interacting with MongoDB
+const api = require('./server/routes/api'); // <-- change this into the app.js instead of just api????
+const messageRoutes = require('./server/routes/messages');
+const userRouts = require('./server/routes/user');
 
 // Parsers
 app.use(bodyParser.json());
@@ -14,8 +19,10 @@ app.use(bodyParser.urlencoded({ extended: false}));
 // Angular DIST output folder
 app.use(express.static(path.join(__dirname, 'dist')));
 
-// API location
-app.use('/api', api);
+// API and route file locations - like the root for these types of requests
+app.use('/message', messageRoutes);
+app.use('/user', userRoutes)
+app.use('/api', api); // <-- change this to generic app route
 
 // Send all other requests to the Angular app
 app.get('*', (req, res) => {
