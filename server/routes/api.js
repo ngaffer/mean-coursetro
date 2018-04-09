@@ -28,7 +28,7 @@ let response = {
 };
 
 // Get users
-router.get('/users', (req, res) => {
+router.get('/tutorial', (req, res) => {
     connection((db) => {
         db.collection('users')
             .find()

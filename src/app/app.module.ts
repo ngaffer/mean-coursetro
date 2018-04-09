@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
+// import { routing } from './app.routing';
 import { DataService } from './data.service';
 import { MessageComponent } from './messages/message.component';
 import { MessageListComponent } from './messages/message-list.component';
@@ -21,7 +22,8 @@ import { MessagesComponent } from './messages/messages.component';
   imports: [
     BrowserModule,
     HttpModule,
-    FormsModule
+    FormsModule,
+    // routing
   ],
   providers: [DataService],
   bootstrap: [AppComponent]
